@@ -5,7 +5,7 @@ const Login = (props) => {
   const host = "http://localhost:5000";
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   let history = useHistory();
-
+  const [user, setUser] = useState({name:"",password:""})
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch(`${host}/api/auth/login`, {
@@ -20,9 +20,12 @@ const Login = (props) => {
     });
     const json = await response.json();
     console.log(json);
+
     if (json.success) {
       //redirect
       localStorage.setItem("token", json.authToken);
+      localStorage.setItem('name', json.user.name);
+      localStorage.setItem('email', json.user.email);
       history.push("/");
       props.showAlert('success','Logged in successfully.');
 

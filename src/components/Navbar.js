@@ -4,11 +4,13 @@ import { useHistory } from "react-router";
 function Navbar(props) {
   let location = useLocation();
   let history = useHistory();
+  const host = "http://localhost:5000";
   const handleLogout = () => {
     localStorage.removeItem("token");
     history.push("/login");
     props.showAlert("success", "Logged out successfully. ");
   };
+  
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -61,9 +63,20 @@ function Navbar(props) {
               </Link>
             </form>
           ) : (
-            <button onClick={handleLogout} className="btn-sm btn-primary mx-1">
-              Logout
-            </button>
+            <div>
+              <Link
+                style={{ color: "white", paddingRight: "0px" }}
+                to="/profile"
+              >
+                {localStorage.getItem('name')}
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="btn-sm btn-primary mx-3"
+              >
+                Logout
+              </button>
+            </div>
           )}
         </div>
       </div>

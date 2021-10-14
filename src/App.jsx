@@ -7,6 +7,7 @@ import NoteState from "./context/notes/NoteState";
 import Alert from "./components/Alert";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Profile from "./components/Profile";
 
 function App() {
   const [alert, setAlert] = useState(null);
@@ -38,6 +39,9 @@ function App() {
               </Route>
               <Route exact path="/signup">
                 <Signup showAlert={showAlert} />
+              </Route>
+              <Route exact path="/profile">
+                <Profile />
               </Route>
             </Switch>
           </div>
